@@ -29,7 +29,7 @@ class Login extends React.Component {
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="pasword_fild" className="text-uppercase">Password</Label>
-                                    <Input  onChange = {(event) => change_login_password_fild(event.target.value)} name = "pasword_fild" value = {passwordfild} type="password" className="form-control" placeholder="123" />
+                                    <Input  onChange = {(event) => change_login_password_fild(event.target.value)} autoComplete="pasword_fild" name = "pasword_fild" value = {passwordfild} type="password" className="form-control" placeholder="123" />
                                 </FormGroup>
                             </Form>
                             <Button size="sm" onClick = {() =>{ loginUser(submit_request_data); login_button_press(is_login_button_active)}}  outline color="info">Submit</Button>
