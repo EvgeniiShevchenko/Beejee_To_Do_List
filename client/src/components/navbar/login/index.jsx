@@ -19,8 +19,8 @@ class Login extends React.Component {
         return (
             <>
                 <Collapse isOpen={is_login_button_active}>
-                    <section className="login-block">
-                        <div className="col login-sec">
+                    <section >
+                        <div className = "login-sec">
                             <h2 className="text-center">Login Now</h2>
                             <Form>
                                 <FormGroup>

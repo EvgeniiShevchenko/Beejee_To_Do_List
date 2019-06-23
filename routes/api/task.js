@@ -186,7 +186,7 @@ function () {
 
             _context4.next = 9;
             return collection.deleteOne({
-              _id: d
+              _id: id
             });
 
           case 9:

@@ -40,10 +40,10 @@ return (
                         <Collapse navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="/components/">Components</NavLink>
+                                    <NavLink href="/presentation/"></NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="/">GitHub</NavLink>
+                                    <NavLink href="https://github.com/EvgeniiShevchenko/Beejee_To_Do_List">GitHub</NavLink>
                                 </NavItem>
                                 {login_grup()}
                             </Nav>
