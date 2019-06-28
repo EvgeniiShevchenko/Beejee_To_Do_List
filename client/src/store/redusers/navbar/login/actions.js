@@ -8,7 +8,7 @@ const actionLogin = {
     LOGOUT_CURRENT_ADMIN: "LOGOUT_CURRENT_ADMIN",
 };
 
-
+// Кнопка активации панели авторизации нажата
 export const login_button_submit_press = (state) => {
     return {
         type: "BUTTON_LOGIN_SUBMIT_PRESS",
@@ -16,7 +16,7 @@ export const login_button_submit_press = (state) => {
     }
 };
 
-// Login...
+// Попытка авторизации с правами Администратора
 export const loginUser = (userData) => dispatch => {
     fetch('/api/login/autorisation', {
         "method": "POST",
@@ -40,7 +40,7 @@ export const loginUser = (userData) => dispatch => {
     .catch(err => console.error(`Error: ${err}`))
 }
 
-//Log out...
+// Выход с системы авторизированого пользователя
 export const logOutUser = () => dispatch => {
     //remove toke from localstorage
     localStorage.removeItem('jwtToken');

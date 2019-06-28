@@ -2,8 +2,8 @@ import React from "react";
 import {Input, Collapse, Button, Form, FormGroup, Label} from 'reactstrap';
 
 class Login extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.loginactive = this.loginactive.bind(this)
     }
 
@@ -14,7 +14,10 @@ class Login extends React.Component {
     render (){
         const {emailfild, passwordfild, is_login_button_active} = this.props; //props and is_login_button_active from navbar
         const {change_login_email_filds, change_login_password_fild, loginUser, login_button_press} = this.props; //actions and login_button_press from navbar
-        const submit_request_data = {"login": emailfild, "password": passwordfild};
+        const submit_request_data = {
+            "login": emailfild,
+            "password": passwordfild
+        };
 
         return (
             <>

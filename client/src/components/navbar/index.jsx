@@ -5,7 +5,7 @@ import Login from "./login/container";
 
 
 class NavBar extends React.Component {
-render(){
+    render(){
     const {searchstring, is_login_button_active, is_login} = this.props; //props and is_login from login
     const {login_button_press, searchaction, logOutUser, search_request_from_header} = this.props; //actions and logOutUser from login and search_request_from_header from task
 
@@ -16,6 +16,7 @@ render(){
             )
         }
     };
+
     const login_grup = () => {
         if(!is_login){
             return (
@@ -27,7 +28,8 @@ render(){
                 )
             }
         };
-return (
+
+    return (
             <>
                 <div>
                     <Navbar color="light" light expand="md">
@@ -40,7 +42,7 @@ return (
                         <Collapse navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="/presentation/"></NavLink>
+                                    <NavLink href="https://www.youtube.com/watch?v=BN_j7wwKetg">YouTube</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink href="https://github.com/EvgeniiShevchenko/Beejee_To_Do_List">GitHub</NavLink>

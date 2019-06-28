@@ -1,33 +1,20 @@
-const path = require('path');
-const express = require("express");
+import  path from 'path';
+import express from "express";
 import bodyParser from "body-parser";
 import morgan from "morgan";
+import ensureAuthorized from "./validations/ensureAuthorized";
 
 
 const task = require('./routes/api/task');
 const login = require('./routes/api/login');
 
-function ensureAuthorized(req, res, next) {
-    if(!req.headers["authorization"]) {
-        next();
-    }else{
-        var bearerToken;
-        var bearerHeader = req.headers["authorization"];
-        if (typeof bearerHeader !== 'undefined') {
-            var bearer = bearerHeader.split(" ");
-            bearerToken = bearer[2];
-            req.token = bearerToken;
-            next();
-        } 
-    }
-};
-
 const app = express();
 
 app.use(morgan('dev'));
-app.use(ensureAuthorized);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(ensureAuthorized);// Промежуточная функция проверки уровня доступа
 
 app.use("/api/task",  task);
 app.use("/api/login", login);

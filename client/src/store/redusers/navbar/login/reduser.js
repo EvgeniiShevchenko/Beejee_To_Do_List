@@ -1,13 +1,7 @@
 import actionLogin from "./actions";
-// import isEmpty from '../../../validations/is-ampty';
+import isEmpty from '../../../validations/is-ampty';
 
-const isEmpty =  value => 
-    value === undefined ||
-    value === null ||
-    (typeof value === 'object' && Object.keys(value).length === 0) ||
-    (typeof value === 'string' && value.trim().length === 0) ;
 
-/*Set initial state */
 export const defaultState = {
   is_login: !isEmpty(localStorage.getItem('jwtToken')),
   user: {},
@@ -19,14 +13,12 @@ const loginReduser = (state = defaultState, action) => {
   switch(action.type) {
 
     case actionLogin.BUTTON_LOGIN_SUBMIT_PRESS:
-        console.log(action.payload);
     return {
       ...state,
       is_login_button_pres: !action.payload
     }
 
     case actionLogin.LOGIN_CURRENT_ADMIN:
-        console.log(action.payload);
     return {
       ...state,
       is_login: action.payload,
@@ -34,7 +26,6 @@ const loginReduser = (state = defaultState, action) => {
     }
 
     case actionLogin.LOGOUT_CURRENT_ADMIN:
-        console.log(action.payload);
     return {
       ...state,
       is_login: false,

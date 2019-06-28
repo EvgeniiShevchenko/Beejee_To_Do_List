@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const jwt = require('jsonwebtoken');
-const key = require('../../config/keys');
+import express from "express";
+import jwt from "jsonwebtoken";
 import {Stitch, RemoteMongoClient} from "mongodb-stitch-server-sdk";
+import key from'../../config/keys';
+const router = express.Router();
 
 const client = Stitch.defaultAppClient;
 const mongodb = client.getServiceClient(RemoteMongoClient.factory,"mongodb-atlas").db("firstApp");

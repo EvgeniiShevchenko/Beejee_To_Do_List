@@ -45,7 +45,7 @@ function () {
               sort: {
                 _id: -1
               },
-              limit: 7
+              limit: 3
             }).asArray();
 
           case 3:

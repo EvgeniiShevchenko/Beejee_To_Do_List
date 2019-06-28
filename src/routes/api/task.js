@@ -4,12 +4,15 @@ const axios = require('axios');
 const express = require('express');
 const router = express.Router();
 
-
+// Иницилизация сервиса базы данных
 const appId = "app-gzhil";
 const client = Stitch.initializeDefaultAppClient(appId);
 const mongodb = client.getServiceClient(RemoteMongoClient.factory,"mongodb-atlas");
+// Подключение к базе данных
 const db = mongodb.db("firstApp");
+// Подключение к колекции базы данных
 const collection = db.collection("Task");
+// Иницилизация нового пользователя
 client.auth.loginWithCredential(new AnonymousCredential()).then(user => {
   console.log(`logged in anonymously as user ${user.id}`)
 });
@@ -18,21 +21,9 @@ client.auth.loginWithCredential(new AnonymousCredential()).then(user => {
 // @route   host: api/task/
 router.get("/", async (req, res) => {
     try{
-        const get_data_from_database = await collection.find({}, {sort: {_id: -1}, limit: 7 }).asArray();
+        const get_data_from_database = await collection.find({}, {sort: {_id: -1}, limit: 3 }).asArray();
         res.send(get_data_from_database);
     }catch(e) {
-        res.status(404).json({
-            "errors": e
-        });
-    }
-});
-
-// @route   host: api/task/count
-router.get("/count", async (req, res) => {
-    try{
-        const get_data_count_from_database = await collection.count();
-        res.send(String(get_data_count_from_database));
-    }catch(e){
         res.status(404).json({
             "errors": e
         });
@@ -51,7 +42,6 @@ router.post("/add-task", async (req, res) => {
         });
     }
 });
-
 
 // @route   host: api/task/delete/:id
 router.delete("/delete/:id", async (req, res) => {

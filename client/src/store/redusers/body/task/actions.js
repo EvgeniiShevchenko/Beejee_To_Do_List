@@ -1,6 +1,5 @@
 const taskpost = {
     POST_NEW_TASK: "POST_NEW_TASK",
-    REQUEST_TASK_COUNT_FROM_DATABASE: "REQUEST_TASK_COUNT_FROM_DATABASE",
     TASK_DISPLAED_TO_SCREN: "TASK_DISPLAED_TO_SCREN",
     TASK_DELETE_FROM_LIST: "TASK_DELETE_FROM_LIST",
     TASK_UPDATED: "TASK_UPDATED",
@@ -12,7 +11,10 @@ const taskpost = {
     PAGINATION_TASK_REQUEST: "PAGINATION_TASK_REQUEST"
 };
 
-
+/**
+ * Запрос с главной поисковой панели. Поиск ведеться в таблице с колонкой Task по ключевому 
+ * слову
+ */
 export const search_request_from_header = (search_request) => {
     return (dispatch) => {
         fetch(`/api/task/search/${search_request}`, {method: "GET"})
@@ -101,21 +103,7 @@ export const button_task_pagination_pres = (number_page) => {
     }
 };
 
-export const request_taskcount_from_database = () => {
-    return (dispatch) => {
-        fetch("/api/task/count", {method: "GET"})
-        .then(response => response.json())
-        .then(string => parseInt(string))
-        .then(number => {
-            return dispatch({
-                type: "REQUEST_TASK_COUNT_FROM_DATABASE",
-                payload: number
-            })
-        })
-        .catch(error => console.error('Error:', error));
-    }
-};
-
+// Запрос к базе данных с целью выборки необходимого количества типа и задач
 export const pagination_task_request = (curent_page, page_size, filter) => {
     button_task_pagination_pres(curent_page);
     const data = {
@@ -140,6 +128,7 @@ export const pagination_task_request = (curent_page, page_size, filter) => {
     }
 };
 
+// Изменеие статуса задачи на необходиммый
 export const change_status_completed = (idTask, curent_status) => {
     return (dispatch) => {
         fetch(`/api/task/status/${idTask}/${curent_status}`, {

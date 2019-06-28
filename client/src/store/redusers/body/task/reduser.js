@@ -4,7 +4,7 @@ export const defaultState = {
     buttom_create_pres: true,
     current_page: 1,
     count_task: 0,
-    page_size: 7,
+    page_size: 3,
     filter: "_id",
     task: []
 };
@@ -24,12 +24,6 @@ const taskReduser = (state = defaultState, action) => {
             return {
                 ...state,
                 buttom_create_pres: !action.payload
-            }
-
-        case taskpost.REQUEST_TASK_COUNT_FROM_DATABASE:
-            return {
-                ...state,
-                count_task: action.payload
             }
 
         case taskpost.TASK_DISPLAED_TO_SCREN:
