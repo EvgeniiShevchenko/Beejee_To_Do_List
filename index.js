@@ -2,49 +2,35 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
+var _path = _interopRequireDefault(require("path"));
+
+var _express = _interopRequireDefault(require("express"));
+
 var _bodyParser = _interopRequireDefault(require("body-parser"));
 
 var _morgan = _interopRequireDefault(require("morgan"));
 
-var path = require('path');
-
-var express = require("express");
+var _ensureAuthorized = _interopRequireDefault(require("./validations/ensureAuthorized"));
 
 var task = require('./routes/api/task');
 
 var login = require('./routes/api/login');
 
-function ensureAuthorized(req, res, next) {
-  if (!req.headers["authorization"]) {
-    next();
-  } else {
-    var bearerToken;
-    var bearerHeader = req.headers["authorization"];
-
-    if (typeof bearerHeader !== 'undefined') {
-      var bearer = bearerHeader.split(" ");
-      bearerToken = bearer[2];
-      req.token = bearerToken;
-      next();
-    }
-  }
-}
-
-;
-var app = express();
+var app = (0, _express["default"])();
 app.use((0, _morgan["default"])('dev'));
-app.use(ensureAuthorized);
 app.use(_bodyParser["default"].json());
 app.use(_bodyParser["default"].urlencoded({
   extended: true
 }));
+app.use(_ensureAuthorized["default"]); // Промежуточная функция проверки уровня доступа
+
 app.use("/api/task", task);
 app.use("/api/login", login);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express["static"](path.join(__dirname, "client", "build")));
+  app.use(_express["default"]["static"](_path["default"].join(__dirname, "client", "build")));
   app.get("*", function (req, res) {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(_path["default"].resolve(__dirname, "client", "build", "index.html"));
   });
 }
 

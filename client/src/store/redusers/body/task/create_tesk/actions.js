@@ -1,34 +1,44 @@
 import is_ampty from "../../../../validations/is-ampty";
+import task_post from "../../../../validations/task-post";
+
 
 const actioncreatetask = {
-    TASK_INVALID: "TASK_INVALID",
+    TASK_VALIDATION: "TASK_VALIDATION",
+    TASK_IS_VALID: "TASK_IS_VALID",
+    TASK_IS_INVALID: "TASK_IS_INVALID",
     CLEAR_TASK_FORM: "CLEAR_TASK_FORM",
-    SWITCH_OFF_TASK_VALID: "SWITCH_OFF_TASK_VALID",
-    VALIDATION_TASK_POST: "VALIDATION_TASK_POST",
     CHANGE_CREATE_TASK_NAME_FILD: "CHANGE_CREATE_TASK_NAME_FILD",
     CHANGE_CREATE_TASK_EMAIL_FILD: "CHANGE_CREATE_TASK_EMAIL_FILD",
     CHANGE_CREATE_TASK_CONTENT_FILD: "CHANGE_CREATE_TASK_CONTENT_FILD"
 };
 
 
-export const validation_task_post = (validate) => {
+export const task_validation = (data) => {
+    const result = task_post(data);
+    console.log("TCL: task_validation -> result", result);
     return {
-        type: "VALIDATION_TASK_POST",
-        payload: validate
+        type: "TASK_VALIDATION",
+        payload: result
     }
 };
 
-export const switch_off_task_valid = () => {
+export const task_is_valid = () => {
     return {
-        type: "SWITCH_OFF_TASK_VALID",
-        payload: false
+        type: "TASK_IS_VALID",
+        payload: {
+            errors: {},
+            isValid: true
+        }
     }
 };
 
-export const task_invalid = () => {
+export const task_is_invalid = () => {
     return {
-        type: "TASK_INVALID",
-        payload: true
+        type: "TASK_IS_INVALID",
+        payload: {
+            errors: {},
+            isValid: false
+        }
     }
 };
 
@@ -40,14 +50,13 @@ export const clear_task_form = (valid_task, event) => {
             payload: {
                 name: "",
                 email: "",
-                task: "",
-                error: false
+                task: ""
             }
         }
     }else{
         // Вызов действия посредством нажатия на форму ввода данных в условия ошибки
         const name = event.target.name;
-        if(valid_task === true){
+        if(valid_task === false){
             return {
                 type: "CLEAR_TASK_FORM",
                 payload: {

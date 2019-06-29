@@ -6,15 +6,15 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
+var _express = _interopRequireDefault(require("express"));
+
+var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
+
 var _mongodbStitchServerSdk = require("mongodb-stitch-server-sdk");
 
-var express = require('express');
+var _keys = _interopRequireDefault(require("../../config/keys"));
 
-var router = express.Router();
-
-var jwt = require('jsonwebtoken');
-
-var key = require('../../config/keys');
+var router = _express["default"].Router();
 
 var client = _mongodbStitchServerSdk.Stitch.defaultAppClient;
 var mongodb = client.getServiceClient(_mongodbStitchServerSdk.RemoteMongoClient.factory, "mongodb-atlas").db("firstApp");
@@ -60,7 +60,8 @@ function () {
             payload = {
               role: get_data_from_database[0].Login
             };
-            jwt.sign(payload, key.secretOrKey, {
+
+            _jsonwebtoken["default"].sign(payload, _keys["default"].secretOrKey, {
               expiresIn: 3600
             }, function (err, token) {
               db.updateOne({
@@ -75,6 +76,7 @@ function () {
                 token: 'Bearer  ' + token
               });
             });
+
             _context.next = 14;
             break;
 
