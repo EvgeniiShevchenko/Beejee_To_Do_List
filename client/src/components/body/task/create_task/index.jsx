@@ -1,5 +1,6 @@
 import React from "react";
 import {Alert, Collapse, Input, InputGroup, InputGroupAddon,  Col, Button, Form, FormGroup} from 'reactstrap';
+import PropTypes  from "prop-types";
 import is_ampty from "../../../../store/validations/is-ampty";
 
 class Newtask extends React.Component {
@@ -85,6 +86,26 @@ class Newtask extends React.Component {
             </>
         )
     }
-}
+};
+
+
+Newtask.propTypes = {
+    error: PropTypes.shape({
+        errors: PropTypes.object,
+        isValid: PropTypes.bool
+    }),
+    name: PropTypes.string,
+    email: PropTypes.string,
+    task: PropTypes.string,
+    change_create_task_name_fild: PropTypes.func,
+    change_create_task_email_fild: PropTypes.func,
+    change_create_task_content_fild: PropTypes.func,
+    clear_task_form: PropTypes.func,
+    task_validation: PropTypes.func,
+    task_is_valid: PropTypes.func,
+    task_is_invalid: PropTypes.func
+};
+
+
 
 export default Newtask;

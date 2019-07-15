@@ -1,5 +1,7 @@
 import React from "react";
 import {Input, Collapse, Button, Form, FormGroup, Label} from 'reactstrap';
+import PropTypes  from "prop-types";
+
 
 class Login extends React.Component {
     constructor(props){
@@ -42,6 +44,17 @@ class Login extends React.Component {
             </>
         )
     }
-}
+};
+
+Login.propTypes = {
+    is_login: PropTypes.bool,
+    user: PropTypes.object,
+    emailfild: PropTypes.string,
+    passwordfild: PropTypes.string,
+    change_login_email_filds: PropTypes.func,
+    change_login_password_fild: PropTypes.func,
+    login_button_submit_press: PropTypes.func,
+    loginUser: PropTypes.func
+};
 
 export default Login;

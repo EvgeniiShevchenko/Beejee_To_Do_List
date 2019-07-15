@@ -1,6 +1,7 @@
 import React from "react";
 import {Dropdown, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,  Collapse, Table, Container, 
     Pagination, PaginationItem, PaginationLink, Row, Col, Button} from 'reactstrap';
+import PropTypes  from "prop-types";
 import Newtask from "./create_task/container";
 
 class Task extends React.Component {
@@ -342,6 +343,24 @@ render () {
             </Container>
         </>)
     }
+};
+
+// props validation
+Task.propTypes = {
+    buttom_create_pres: PropTypes.bool,
+    current_page: PropTypes.number,
+    count_task: PropTypes.number,
+    page_size: PropTypes.number,
+    filter: PropTypes.string,
+    task: PropTypes.array,
+    button_task_create: PropTypes.func,
+    task_updated: PropTypes.func,
+    task_delete_from_list: PropTypes.func,
+    task_displaed_to_scren: PropTypes.func,
+    pagination_task_request: PropTypes.func,
+    change_sort_type: PropTypes.func,
+    button_task_pagination_pres: PropTypes.func,
+    change_status_completed: PropTypes.func
 };
 
 export default Task;

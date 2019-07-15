@@ -32,7 +32,6 @@ const taskReduser = (state = defaultState, action) => {
             }
 
         case taskpost.TASK_DELETE_FROM_LIST:
-            console.log(`HA! ${JSON.stringify(action.payload)}`);
             const task_delete = state.task.filter(task => task._id !== action.payload);
             return {...state,
                 task: task_delete

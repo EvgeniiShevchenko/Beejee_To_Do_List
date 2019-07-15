@@ -11,7 +11,6 @@ const taskcreatorReduser = (state = defaultState, action) => {
     switch(action.type){
 
         case taskcreator.TASK_VALIDATION:
-            console.log(action.payload);
             return {
                 ...state,
                 error: action.payload
@@ -30,7 +29,6 @@ const taskcreatorReduser = (state = defaultState, action) => {
             }
 
         case taskcreator.CLEAR_TASK_FORM:
-            console.log(action.payload); 
             return {
                 ...state,
                 ...action.payload

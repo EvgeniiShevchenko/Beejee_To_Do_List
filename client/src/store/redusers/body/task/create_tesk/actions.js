@@ -15,7 +15,6 @@ const actioncreatetask = {
 
 export const task_validation = (data) => {
     const result = task_post(data);
-    console.log("TCL: task_validation -> result", result);
     return {
         type: "TASK_VALIDATION",
         payload: result

@@ -1,6 +1,7 @@
 import React from "react";
 import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Input, Button} from 'reactstrap';
 import {CSSTransitionGroup} from 'react-transition-group';
+import PropTypes  from "prop-types";
 import Login from "./login/container";
 
 
@@ -56,6 +57,14 @@ class NavBar extends React.Component {
             </>
         )
     }
-}
+};
+
+NavBar.propTypes = {
+    is_login_button_active: PropTypes.bool,
+    search_button_active: PropTypes.bool,
+    search_string: PropTypes.string,
+    searchaction: PropTypes.func,
+    login_button_press: PropTypes.func
+};
 
 export default NavBar;
